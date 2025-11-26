@@ -5,7 +5,7 @@ const CuteBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showBubble, setShowBubble] = useState(false);
 
-  // 1. Lời chào chuẩn cho Todo App
+  // 1. Lời chào cho Todo App
   const [messages, setMessages] = useState([
     {
       role: "model",
@@ -21,7 +21,7 @@ const CuteBot = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   useEffect(() => scrollToBottom(), [messages, isOpen]);
 
-  // Hiệu ứng bong bóng: Chỉ hiện khi ĐÓNG chat
+  // Hiệu ứng bong bóng
   useEffect(() => {
     const interval = setInterval(() => {
       if (!isOpen) {
@@ -81,7 +81,6 @@ const CuteBot = () => {
   return (
     <div className="fixed bottom-6 right-6 z-[9999] flex flex-col items-end gap-2">
       {/* --- KHUNG CHAT --- */}
-      {/* Chỉ render khi isOpen = true */}
       {isOpen && (
         <div className="bg-white w-80 h-96 rounded-2xl shadow-2xl border border-teal-200 flex flex-col overflow-hidden animate-in slide-in-from-bottom-10 duration-300 mb-2">
           <div className="bg-gradient-to-r from-teal-400 to-cyan-500 p-3 flex justify-between items-center text-white">
@@ -165,8 +164,6 @@ const CuteBot = () => {
 
       {/* --- NÚT MIKU + BONG BÓNG --- */}
       <div className="relative group">
-        {/* 2. FIX BONG BÓNG: Thêm điều kiện !isOpen vào className */}
-        {/* Nếu isOpen = true (đang chat) -> scale-0 opacity-0 (Ẩn ngay lập tức) */}
         <div
           className={`
             absolute bottom-full right-0 mb-2 w-48 bg-white p-3 rounded-xl rounded-br-none shadow-lg border border-teal-200

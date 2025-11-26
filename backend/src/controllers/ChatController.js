@@ -4,27 +4,33 @@ import Task from "../models/Task.js";
 
 dotenv.config();
 
+const getUserId = (req) => {
+    return req.user ? req.user._id : "master_user_id"; 
+};
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 export const chatWithBot = async (req, res) => {
   try {
     const { message, history } = req.body;
+    const userId = getUserId(req);
 
     if (!message) return res.status(400).json({ reply: "Hỏi gì đi Master ơi! 😿" });
 
+    if (!userId) {
+        return res.status(401).json({ reply: "Master ơi, Miku cần Master đăng nhập để xem danh sách công việc riêng tư nha! 🔒" });
+    }
+    
     // --- 1. XỬ LÝ LỊCH SỬ CHAT ---
     let cleanHistory = [];
     if (Array.isArray(history)) {
-        // Sao chép để không ảnh hưởng mảng gốc
         cleanHistory = [...history];
 
-        // Xóa tin nhắn cuối cùng nếu nó trùng với câu hỏi hiện tại (Tránh lặp lại)
         const lastMsg = cleanHistory[cleanHistory.length - 1];
         if (lastMsg && lastMsg.role === 'user' && lastMsg.parts[0].text === message) {
             cleanHistory.pop();
         }
 
-        // Xóa các tin nhắn 'model' ở đầu danh sách (Nguyên nhân chính gây lỗi)
         while (cleanHistory.length > 0 && cleanHistory[0].role === 'model') {
             cleanHistory.shift();
         }

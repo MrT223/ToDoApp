@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL =
-  "https://millennium-keeps-karma-personal.trycloudflare.com/api";
+  "https://kenneth-safari-survivors-dns.trycloudflare.com/api";
 
 const api = axios.create({
   baseURL: BASE_URL,
