@@ -30,24 +30,25 @@ Deployed on: [Render](https://todoapp-ozbt.onrender.com)
 
 ## ⚙️ Công nghệ sử dụng
 
-| Công nghệ | Vai trò |
-|-----------|--------|
-| **React** | Frontend, UI động |
-| **Node.js + Express** | Backend API |
-| **MongoDB** | Database NoSQL |
-| **TailwindCSS 4** | Giao diện nhanh, responsive |
-| **ShadCN UI** | Component UI hiện đại |
-| **Docker** | Chạy container dễ dàng |
+| Công nghệ             | Vai trò                     |
+| --------------------- | --------------------------- |
+| **React**             | Frontend, UI động           |
+| **Node.js + Express** | Backend API                 |
+| **MongoDB**           | Database NoSQL              |
+| **TailwindCSS 4**     | Giao diện nhanh, responsive |
+| **ShadCN UI**         | Component UI hiện đại       |
+| **Docker**            | Chạy container dễ dàng      |
 
 ---
 
 ## ⚡ Triển khai & chạy dự án với Docker
 
 ### 1️⃣ Clone dự án
+
 ```bash
-git clone https://github.com/MinQuan-kun/TodoApp.git
+git clone https://github.com/MrT223/ToDoApp.git
 cd TodoApp
-````
+```
 
 ### 2️⃣ Chạy toàn bộ ứng dụng bằng Docker Compose
 
@@ -65,14 +66,14 @@ docker ps
 
 Container chính:
 
-* `todo-mongodb` (MongoDB)
-* `todo-backend` (Node.js API)
-* `todo-frontend` (React App)
+- `todo-mongodb` (MongoDB)
+- `todo-backend` (Node.js API)
+- `todo-frontend` (React App)
 
 ### 4️⃣ Truy cập ứng dụng
 
-* Frontend: [http://localhost:5173](http://localhost:5173)
-* Backend API: [http://localhost:5001/api/tasks](http://localhost:5001/api/tasks)
+- Frontend: [http://localhost:5173](http://localhost:5173)
+- Backend API: [http://localhost:5001/api/tasks](http://localhost:5001/api/tasks)
 
 ### 5️⃣ Dừng ứng dụng
 
@@ -86,6 +87,5 @@ docker compose down
 
 ## 🔗 Nguồn tham khảo
 
-[![GitHub](https://img.shields.io/badge/GitHub-Visit-black?logo=github\&logoColor=white)](https://github.com/mtikcode/mtikcode_todoX)
-[![YouTube](https://img.shields.io/badge/YouTube-Watch-red?logo=youtube\&logoColor=white)](https://www.youtube.com/watch?v=L3a9c8M55Fo&t=2783s)
-
+[![GitHub](https://img.shields.io/badge/GitHub-Visit-black?logo=github&logoColor=white)](https://github.com/mtikcode/mtikcode_todoX)
+[![YouTube](https://img.shields.io/badge/YouTube-Watch-red?logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=L3a9c8M55Fo&t=2783s)
