@@ -9,7 +9,7 @@ import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 import api from "@/lib/axios";
 import { visibleTaskLimit } from "@/lib/data";
-
+import { useAuth } from "@/context/AuthContext"; // Import Auth Context
 
 const HomePage = () => {
   const [taskBuffer, setTaskBuffer] = useState([]);
@@ -18,11 +18,14 @@ const HomePage = () => {
   const [filter, setFilter] = useState("all");
   const [dateQuery, setDateQuery] = useState("today");
   const [page, setPage] = useState(1);
+  const { user } = useAuth(); // Lấy user từ context
 
-
- useEffect(() => {
-    fetchTasks();
-  }, [dateQuery]);
+  // Chỉ fetch tasks khi user đã đăng nhập
+  useEffect(() => {
+    if (user) {
+      fetchTasks();
+    }
+  }, [dateQuery, user]); // Thêm user vào dependency
 
   useEffect(() => {
     setPage(1);
@@ -36,7 +39,8 @@ const HomePage = () => {
       setCompleteTaskCount(res.data.completeCount);
     } catch (error) {
       console.error("Lỗi xảy ra khi truy xuất tasks:", error);
-      toast.error("Lỗi xảy ra khi truy xuất tasks.");
+      toast.error("Lỗi xảy ra khi truy xuất tasks. Vui lòng đăng nhập lại.");
+      // Có thể thêm logic logout nếu lỗi là 401
     }
   };
 
@@ -76,11 +80,11 @@ const HomePage = () => {
     page * visibleTaskLimit
   );
 
-  if (visibleTasks.length === 0) {
-    handlePrev();
-  }
-
+  // Điều chỉnh phân trang nếu trang hiện tại không có dữ liệu
   const totalPages = Math.ceil(filteredTasks.length / visibleTaskLimit);
+  if (visibleTasks.length === 0 && page > 1) {
+    setPage((prev) => Math.max(1, prev - 1));
+  }
 
   return (
     <div className="min-h-screen w-full bg-white relative">
@@ -88,7 +92,8 @@ const HomePage = () => {
       <div
         className="absolute inset-0 z-0"
         style={{
-          background: "linear-gradient(120deg, #d5c5ff 0%, #a7f3d0 50%, #f0f0f0 100%)"
+          background:
+            "linear-gradient(120deg, #d5c5ff 0%, #a7f3d0 50%, #f0f0f0 100%)",
         }}
       />
       {/* Your Content/Components */}
@@ -109,33 +114,31 @@ const HomePage = () => {
           />
 
           {/* Danh Sách Nhiệm Vụ */}
-           <TaskList
+          <TaskList
             filteredTasks={visibleTasks}
             filter={filter}
             handleTaskChanged={handleTaskChanged}
           />
 
-           {/* Phân Trang và Lọc Theo Date */}
+          {/* Phân Trang và Lọc Theo Date */}
           <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-            <TaskListPagination
-              handleNext={handleNext}
-              handlePrev={handlePrev}
-              handlePageChange={handlePageChange}
-              page={page}
-              totalPages={totalPages}
-            />
-            <DateTimeFilter
-              dateQuery={dateQuery}
-              setDateQuery={setDateQuery}
-            />
+            {totalPages > 1 && (
+              <TaskListPagination
+                handleNext={handleNext}
+                handlePrev={handlePrev}
+                handlePageChange={handlePageChange}
+                page={page}
+                totalPages={totalPages}
+              />
+            )}
+            <DateTimeFilter dateQuery={dateQuery} setDateQuery={setDateQuery} />
           </div>
 
-         {/* Chân Trang */}
+          {/* Chân Trang */}
           <Footer
             activeTasksCount={activeTaskCount}
             completedTasksCount={completeTaskCount}
           />
-
         </div>
       </div>
     </div>
