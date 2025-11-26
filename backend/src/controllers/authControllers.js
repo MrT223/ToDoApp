@@ -11,7 +11,6 @@ const generateToken = (id) => {
   });
 };
 
-// @route POST /api/auth/register
 export const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -46,7 +45,6 @@ export const registerUser = async (req, res) => {
   }
 };
 
-// @route POST /api/auth/login
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 

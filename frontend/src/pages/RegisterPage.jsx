@@ -72,14 +72,12 @@ const RegisterPage = () => {
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Username */}
             <div className="space-y-2">
               <label htmlFor="username" className="text-sm font-medium">
                 Tên người dùng
               </label>
               <div className="relative">
                 {" "}
-                {/* BỌC INPUT VÀ ICON */}
                 <Input
                   id="username"
                   type="text"
@@ -89,19 +87,16 @@ const RegisterPage = () => {
                   required
                   className="pl-10"
                 />
-                {/* ICON CĂN CHỈNH */}
                 <UserIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 mt-0.5 size-4 text-muted-foreground" />
               </div>
             </div>
 
-            {/* Email */}
             <div className="space-y-2">
               <label htmlFor="email" className="text-sm font-medium">
                 Email
               </label>
               <div className="relative">
                 {" "}
-                {/* BỌC INPUT VÀ ICON */}
                 <Input
                   id="email"
                   type="email"
@@ -111,19 +106,16 @@ const RegisterPage = () => {
                   required
                   className="pl-10"
                 />
-                {/* ICON CĂN CHỈNH */}
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 mt-0.5 size-4 text-muted-foreground" />
               </div>
             </div>
 
-            {/* Password */}
             <div className="space-y-2">
               <label htmlFor="password" className="text-sm font-medium">
                 Mật khẩu (ít nhất 6 ký tự)
               </label>
               <div className="relative">
                 {" "}
-                {/* BỌC INPUT VÀ ICON */}
                 <Input
                   id="password"
                   type="password"
@@ -133,7 +125,6 @@ const RegisterPage = () => {
                   required
                   className="pl-10"
                 />
-                {/* ICON CĂN CHỈNH */}
                 <LockKeyhole className="absolute left-3 top-1/2 transform -translate-y-1/2 mt-0.5 size-4 text-muted-foreground" />
               </div>
             </div>

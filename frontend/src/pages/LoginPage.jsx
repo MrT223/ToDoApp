@@ -70,7 +70,6 @@ const LoginPage = () => {
               </label>
               <div className="relative">
                 {" "}
-                {/* BỌC INPUT VÀ ICON */}
                 <Input
                   id="email"
                   type="email"
@@ -80,7 +79,6 @@ const LoginPage = () => {
                   required
                   className="pl-10"
                 />
-                {/* ICON CĂN CHỈNH */}
                 <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 mt-0.5 size-4 text-muted-foreground" />
               </div>
             </div>
@@ -91,7 +89,6 @@ const LoginPage = () => {
               </label>
               <div className="relative">
                 {" "}
-                {/* BỌC INPUT VÀ ICON */}
                 <Input
                   id="password"
                   type="password"
@@ -101,7 +98,6 @@ const LoginPage = () => {
                   required
                   className="pl-10"
                 />
-                {/* ICON CĂN CHỈNH */}
                 <LockKeyhole className="absolute left-3 top-1/2 transform -translate-y-1/2 mt-0.5 size-4 text-muted-foreground" />
               </div>
             </div>

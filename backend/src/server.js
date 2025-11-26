@@ -27,11 +27,10 @@ app.use(
   })
 );
 
-// routes
 app.use("/api/auth", authRoute);
 app.use("/api/tasks", taskRoute);
 app.use("/api/chat", ChatRouter);
-// production static
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
@@ -42,7 +41,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Kết nối MongoDB
 connectDB()
-  .then(connectRedis) // <-- GỌI HÀM KẾT NỐI REDIS SAU KHI KẾT NỐI MONGODB
+  .then(connectRedis)
   .then(() => {
     app.listen(PORT, () => {
       console.log(
